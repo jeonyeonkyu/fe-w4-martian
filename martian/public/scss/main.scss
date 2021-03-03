@@ -3,3 +3,42 @@
   top: 352px;
   left: 352px;
 }
+
+.container {
+  display: flex;
+}
+
+.input_list {
+  place-self: center;
+
+  input {
+    display: block;
+    margin: 20px 0;
+  }
+
+  &__first {
+    margin-bottom: 80px;
+  }
+
+  &__item {
+    &--title {
+      font-size: 24px;
+      font-weight: 700;
+    }
+  }
+}
+
+.analysis_list {
+  place-self: center;
+  font-size: 24px;
+
+  &__second {
+    position: relative;
+    margin-top: 72px;
+    top: 93px;
+  }
+}
+
+.arrow {
+  transition: all 1s;
+}

@@ -11,9 +11,41 @@
 </head>
 
 <body>
-  <img class="arrow" src="./images/arrow.svg" alt="">
-  <canvas class="_canvas" width="800" height="800"></canvas>
-  <script src="./main_bundle.js"></script>
+  <div class="container">
+    <img class="arrow" style="transform: rotate(-78.75deg)" src="./images/arrow.svg" alt="">
+    <canvas class="_canvas" width="800" height="800"></canvas>
+
+    <div class="input_list">
+      <div class="input_list__first">
+        <span class="input_list__item--title">송수신정보</span>
+        <input class="_receive_input" type="text" size="40">
+        <button class="_receive_button">해석하기</button>
+        <span>----------------------------------></span>
+      </div>
+
+      <div class="input_list__second">
+        <span class="input_list__item--title">발신정보입력</span>
+        <input class="_send_input" type="text" size="40">
+        <button class="_send_button">지구로 보내기</button>
+        <span>-----------------------------></span>
+      </div>
+    </div>
+
+    <div class="analysis_list">
+      <div class="analysis_list__first">
+        <span class="_receive_interpreting"></span>
+      </div>
+      <div class="analysis_list__second">
+        <span class="_send_interpreting"></span>
+      </div>
+    </div>
+
+
+    <div>
+      <span class="_message">68 65 6c 6c 6f 20 65 61 72 74 68 21</span>
+    </div>
+    <script src="./main_bundle.js"></script>
+
 </body>
 
 </html>

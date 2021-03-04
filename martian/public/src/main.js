@@ -44,24 +44,42 @@ $sendInput.addEventListener('input', ({ target: { value } }) => {
   $sendInterpreting.innerText = convertNumber;
 });
 
-
-const message = _.$('._message');
-const messageArray = message.innerText.split(' ');
-const currentMessage = messageArray.shift();
-let prevIndex = 0;
-const currentIndex = Hexadecimal.indexOf(currentMessage[0].toUpperCase());
-const distance = prevIndex - currentIndex;
-const way = distance <= 8 || distance >= -8;
-const step = Math.abs(distance) > 8 ? 16 - Math.abs(distance) : Math.abs(distance);
-
-const prevAngle = _.$('.arrow').style.transform.slice(7).slice(0, -4);
-if (way) {
-  _.$('.arrow').style.transform = `rotate(${Number(prevAngle) + step * 22.5}deg)`;
-} else {
-  _.$('.arrow').style.transform = `rotate(${Number(prevAngle) - step * 22.5}deg)`;
+const appointed = _.$All('.appointed > div');
+const addBlinkColor = (index) => {
+  appointed[index].classList.add('blinking');
 }
-//구현중..
 
-//11.25
-//22.5
-//68 65 6c 6c 6f 20 65 61 72 74 68 21
+const removeBlinkColor = (index) => {
+  appointed[index].classList.remove('blinking');
+}
+
+const runTransceiver = ({ $arrow, $message, $receiveInput, Hexadecimal }) => {
+  const messageArray = $message.innerText.split(' ');
+  const size = 360 / Hexadecimal.length;
+  let prevIndex = 0;
+  const allMessageTimer = setInterval(() => {
+    const currentMessage = messageArray.shift().split('');
+    const currentMessageTimer = setInterval(() => {
+      const currentIndex = Hexadecimal.indexOf(currentMessage.shift().toUpperCase());
+      removeBlinkColor(prevIndex);
+      addBlinkColor(currentIndex);
+      const distance = prevIndex - currentIndex;
+      const way = distance >= 8 || (distance <= 0 && distance >= -8);
+      const step = Math.abs(distance) > 8 ? 16 - Math.abs(distance) : Math.abs(distance);
+      const prevAngle = Number($arrow.style.transform.slice(7).slice(0, -4));
+      $arrow.style.transform = way ? `rotate(${prevAngle + step * size}deg)`
+        : `rotate(${prevAngle - step * size}deg)`;
+      prevIndex = currentIndex;
+
+      $receiveInput.value += Hexadecimal[currentIndex];
+      if (!currentMessage[0]) clearInterval(currentMessageTimer);
+    }, 2000);
+    $receiveInput.value += ' ';
+    if (!messageArray[0]) clearInterval(allMessageTimer);
+  }, 5000);
+}
+
+const $arrow = _.$('.arrow');
+const $message = _.$('._message');
+
+runTransceiver({ $arrow, $message, $receiveInput, Hexadecimal });

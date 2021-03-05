@@ -1,5 +1,3 @@
-import _ from './util.js';
-
 const plateStuff = {
   x: 400,
   y: 400,
@@ -9,11 +7,20 @@ const plateStuff = {
   anticlockwise: false
 }
 
+const marsStyle = {
+  fillColor: '#F77269',
+  strokeColor: '#000',
+  textColor: '#fff',
+  textAlign: 'center',
+  textBaseline: 'middle',
+  font: '24pt Century Gothic Bold',
+}
+
 const addText = (context, category, midAngle) => {
-  context.textAlign = "center";
-  context.textBaseline = "middle";
-  context.font = "24pt Century Gothic Bold";
-  context.fillStyle = "#fff";
+  context.textAlign = marsStyle.textAlign;
+  context.textBaseline = marsStyle.textBaseline;
+  context.font = marsStyle.font;
+  context.fillStyle = marsStyle.textColor;
   context.fillText(category, 400 + Math.cos(midAngle) * 260, 400 + Math.sin(midAngle) * 260);
 }
 
@@ -23,8 +30,8 @@ const numberPlate = ({ context, Hexadecimal }) => {
   Hexadecimal.forEach(hex => {
     const nextAngle = angle + endAngle / Hexadecimal.length;
     context.beginPath();
-    context.strokeStyle = '#000';
-    context.fillStyle = '#F77269';
+    context.strokeStyle = marsStyle.strokeColor;
+    context.fillStyle = marsStyle.fillColor;
     context.moveTo(x, x);
     context.arc(x, y, radius, angle, nextAngle, anticlockwise);
     context.lineTo(x, x);

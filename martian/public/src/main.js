@@ -6,8 +6,6 @@ import {
   sendButtonClickHandler, earthSendButtonClickHandler
 } from './eventHandler.js';
 
-const Hexadecimal = ['0', '1', '2', '3', '4', '5', '6', '7', '8',
-  '9', 'A', 'B', 'C', 'D', 'E', 'F'];
 
 const elements = {
   $canvas: _.$('._canvas'),
@@ -27,7 +25,7 @@ const elements = {
 }
 
 const context = elements.$canvas.getContext('2d');
-renderPlate({ context, Hexadecimal });
+renderPlate(context);
 
 elements.$receiveButton.addEventListener('click', () => receiveButtonClickHandler(elements));
 elements.$sendInput.addEventListener('input', (event) => sendInputHandler(event, elements));
@@ -36,7 +34,7 @@ elements.$earthSendButton.addEventListener('click', () => earthSendButtonClickHa
 
 const observer = new MutationObserver((mutations) => {
   const communicator = mutations[0].attributeName === 'data-from-mars' ? 'fromMars' : 'fromEarth';
-  runTransceiver(elements, communicator, Hexadecimal);
+  runTransceiver(elements, communicator);
 });
 
 const config = { attributes: true };

@@ -1,3 +1,5 @@
+import hexadecimal from './hexadecimal.js';
+
 const plateStuff = {
   x: 400,
   y: 400,
@@ -24,11 +26,11 @@ const addText = (context, category, midAngle) => {
   context.fillText(category, 400 + Math.cos(midAngle) * 260, 400 + Math.sin(midAngle) * 260);
 }
 
-const numberPlate = ({ context, Hexadecimal }) => {
+const numberPlate = (context) => {
   const { x, y, radius, startAngle, endAngle, anticlockwise } = plateStuff;
   let angle = startAngle;
-  Hexadecimal.forEach(hex => {
-    const nextAngle = angle + endAngle / Hexadecimal.length;
+  hexadecimal.forEach(hex => {
+    const nextAngle = angle + endAngle / hexadecimal.length;
     context.beginPath();
     context.strokeStyle = marsStyle.strokeColor;
     context.fillStyle = marsStyle.fillColor;
@@ -44,7 +46,7 @@ const numberPlate = ({ context, Hexadecimal }) => {
   })
 }
 
-const arrowPlate = ({ context }) => {
+const arrowPlate = (context) => {
   const { x, y, radius, endAngle, anticlockwise } = plateStuff;
   context.beginPath();
   context.arc(x, y, radius / 3, 0, endAngle, anticlockwise);
@@ -53,9 +55,9 @@ const arrowPlate = ({ context }) => {
   context.closePath();
 }
 
-const renderPlate = ({ context, Hexadecimal }) => {
-  numberPlate({ context, Hexadecimal });
-  arrowPlate({ context });
+const renderPlate = (context) => {
+  numberPlate(context);
+  arrowPlate(context);
 }
 
 export default renderPlate;

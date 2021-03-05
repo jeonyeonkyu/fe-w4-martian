@@ -1,4 +1,5 @@
 import transformColorPointOfView from './colorChange.js';
+import hexadecimal from './hexadecimal.js';
 
 const returningToOriginalState = ({ $mars, $arrow, $receiveButton, $receiveInput }, timerKinds) => {
   setTimeout(() => {
@@ -17,14 +18,14 @@ const getStep = (distance) => {
   return Math.abs(distance) > 8 ? 16 - Math.abs(distance) : Math.abs(distance);
 }
 
-const rotateArrowImage = ({ $arrow }, step, way, Hexadecimal) => {
-  const size = 360 / Hexadecimal.length;
+const rotateArrowImage = ({ $arrow }, step, way) => {
+  const size = 360 / hexadecimal.length;
   const prevAngle = Number($arrow.style.transform.slice(7).slice(0, -4));
   $arrow.style.transform = way ? `rotate(${prevAngle + step * size}deg)`
     : `rotate(${prevAngle - step * size}deg)`;
 }
 
-const runTransceiver = (elements, communicator, Hexadecimal) => {
+const runTransceiver = (elements, communicator) => {
   const messageArray = elements.$message.dataset[communicator].split(' ');
   let prevIndex = 0;
   const input = communicator === 'fromMars' ? elements.$earthReceiveInput : elements.$receiveInput;
@@ -34,14 +35,14 @@ const runTransceiver = (elements, communicator, Hexadecimal) => {
     const currentMessage = messageArray.shift().split('');
 
     const currentMessageTimer = setInterval(() => {
-      const currentIndex = Hexadecimal.indexOf(currentMessage.shift().toUpperCase());
+      const currentIndex = hexadecimal.indexOf(currentMessage.shift().toUpperCase());
       transformColorPointOfView(elements.$appointed[currentIndex], 2000);
       const distance = prevIndex - currentIndex;
       const way = checkClockWise(distance);
       const step = getStep(distance);
-      rotateArrowImage(elements, step, way, Hexadecimal);
+      rotateArrowImage(elements, step, way);
       prevIndex = currentIndex;
-      input.value += Hexadecimal[currentIndex];
+      input.value += hexadecimal[currentIndex];
       if (!currentMessage[0]) clearInterval(currentMessageTimer);
     }, 2000);
 

@@ -1,5 +1,7 @@
-canvas {
-  background-color: rgb(255, 239, 219);
+body {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("/images/space.jpg");
+  height: 800px;
+  color: white;
 }
 
 .arrow {
@@ -37,7 +39,6 @@ canvas {
 }
 
 .empty_space {
-  background-color: rgb(51, 51, 51);
   width: 200px;
 }
 
@@ -46,8 +47,10 @@ canvas {
 }
 
 .earth {
-  background-color: rgb(221, 247, 255);
   width: 350px;
+  input {
+    margin: 20px 0;
+  }
   > div {
     margin-top: 20px;
   }
@@ -65,67 +68,67 @@ canvas {
 
   &__number {
     &1 {
-      bottom: 725px;
+      bottom: 783px;
       left: 426px;
     }
     &2 {
-      bottom: 688px;
+      bottom: 746px;
       left: 521px;
     }
     &3 {
-      bottom: 616px;
+      bottom: 674px;
       left: 592px;
     }
     &4 {
-      bottom: 522px;
+      bottom: 580px;
       left: 631px;
     }
     &5 {
-      bottom: 422px;
+      bottom: 480px;
       left: 631px;
     }
     &6 {
-      bottom: 327px;
+      bottom: 385px;
       left: 591px;
     }
     &7 {
-      bottom: 254px;
+      bottom: 312px;
       left: 520px;
     }
     &8 {
-      bottom: 217px;
+      bottom: 275px;
       left: 426px;
     }
     &9 {
-      bottom: 216px;
+      bottom: 274px;
       left: 325px;
     }
     &10 {
-      bottom: 254px;
+      bottom: 312px;
       left: 231px;
     }
     &11 {
-      bottom: 325px;
+      bottom: 383px;
       left: 159px;
     }
     &12 {
-      bottom: 421px;
+      bottom: 480px;
       left: 120px;
     }
     &13 {
-      bottom: 522px;
+      bottom: 580px;
       left: 121px;
     }
     &14 {
-      bottom: 616px;
+      bottom: 674px;
       left: 159px;
     }
     &15 {
-      bottom: 687px;
+      bottom: 746px;
       left: 232px;
     }
     &16 {
-      bottom: 727px;
+      bottom: 785px;
       left: 325px;
     }
   }
@@ -137,9 +140,18 @@ canvas {
 
 @keyframes blink {
   0% {
-    opacity: 0.1;
+    opacity: 0;
   }
   100% {
     opacity: 0.4;
   }
+}
+
+.mars {
+  background-color: white;
+  opacity: 0;
+  width: 600px;
+  height: 600px;
+  transform: translate3d(100px, -700px, 0);
+  border-radius: 50%;
 }

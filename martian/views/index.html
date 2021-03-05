@@ -12,6 +12,7 @@
 
 <body>
   <div class="container">
+
     <img class="arrow" style="transform: rotate(-78.75deg)" src="./images/arrow.svg" alt="">
     <canvas class="_canvas" width="800" height="800"></canvas>
 
@@ -19,19 +20,16 @@
       <div class="">
         <span class="_receive_interpreting"></span>
       </div>
-
       <div class="input_list__first">
         <span class="input_list__item--title">송수신정보</span>
         <input class="_receive_input" type="text" size="40" readonly>
-        <button class="_receive_button">해석하기</button>
+        <button class="_receive_button" disabled>해석하기</button>
       </div>
-
       <div class="input_list__second">
         <span class="input_list__item--title">발신정보입력</span>
         <input class="_send_input" type="text" size="40">
         <button class="_send_button">지구로 보내기</button>
       </div>
-
       <div class="">
         <span class="_send_interpreting"></span>
       </div>
@@ -41,31 +39,20 @@
 
     <div class="earth">
       <img class="earth_image" src="./images/earth.png" alt="">
-
-      <div>
-        <span>asdf</span>
-      </div>
       <div>
         <span>송수신정보</span>
-        <input class="" type="text" size="40">
-        <button class="">해석하기</button>
+        <input class="_earth_receive_input" type="text" size="40">
       </div>
-
       <div>
         <span>발신정보입력</span>
-        <input class="" type="text" size="40">
-        <button class="">화성으로 보내기</button>
-      </div>
-
-      <div>
-        <span>123</span>
+        <input class="_earth_send_input" type="text" size="40">
+        <button class="_earth_send_button">화성으로 보내기</button>
       </div>
     </div>
 
   </div>
-  <div>
-    <span class="_message">68 65 6c 6c 6f 20 65 61 72 74 68 21</span>
-  </div>
+
+  <input hidden class="_message" data-from-mars="" data-from-earth="">
 
   <div class="appointed">
     <div class="appointed__number1"></div>
@@ -85,6 +72,8 @@
     <div class="appointed__number15"></div>
     <div class="appointed__number16"></div>
   </div>
+
+  <div class="mars"></div>
 
   <script src="./main_bundle.js"></script>
 
